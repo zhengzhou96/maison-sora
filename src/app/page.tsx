@@ -244,9 +244,9 @@ function Philosophy() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="philosophy" className="py-24 px-6 lg:px-8 bg-shiro">
+    <section ref={sectionRef} id="philosophy" className="py-12 lg:py-20 px-6 lg:px-8 bg-shiro">
       <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
             <h2 className="heading-2 text-sumi mb-8 philosophy-heading text-balance">
               Quiet Confidence,
@@ -276,7 +276,7 @@ function Philosophy() {
             <img
               src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop"
               alt="Minimalist interior with natural light"
-              className="w-full h-[600px] object-cover"
+              className="w-full h-[450px] object-cover"
             />
           </div>
         </div>
@@ -357,29 +357,79 @@ function Rooms() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="rooms" className="py-24 px-6 lg:px-8 bg-surface">
+    <section ref={sectionRef} id="rooms" className="py-12 lg:py-20 px-6 lg:px-8 bg-surface">
       <div className="max-w-7xl mx-auto">
-        <h2 className="heading-2 text-sumi mb-16 rooms-heading">
-          Rooms & Suites
-        </h2>
+        <div className="mb-10 rooms-heading">
+          <h2 className="heading-2 text-sumi">
+            Rooms & Suites
+          </h2>
+          <p className="body text-text-secondary mt-4 max-w-xl text-pretty">
+            Three distinct spaces, each composed with intention. 
+            Natural materials, curated light, and the quiet confidence 
+            of considered design.
+          </p>
+        </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
-          {rooms.map((room) => (
-            <div key={room.name} className="room-card group">
-              <div className="overflow-hidden mb-6 image-hover">
-                <img
-                  src={room.image}
-                  alt={room.name}
-                  className="w-full h-80 object-cover"
-                />
+        {/* Editorial Layout: Featured room spans 2 columns, others stack */}
+        <div className="grid lg:grid-cols-3 gap-8 lg:gap-8">
+          {/* Featured Room - Sora Suite (spans 2 columns) */}
+          <div className="room-card lg:col-span-2 group">
+            <div className="overflow-hidden mb-6 image-hover">
+              <img
+                src={rooms[0].image}
+                alt={rooms[0].name}
+                className="w-full h-[350px] lg:h-[450px] object-cover"
+              />
+            </div>
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+              <div>
+                <div className="caption text-wasabi font-medium mb-2">{rooms[0].size}</div>
+                <h3 className="heading-3 text-sumi">{rooms[0].name}</h3>
               </div>
-              <div className="caption mb-2">{room.size}</div>
-              <h3 className="heading-3 text-sumi mb-4">{room.name}</h3>
-              <p className="body text-text-secondary text-pretty">
-                {room.description}
+              <p className="body text-text-secondary text-pretty max-w-md">
+                {rooms[0].description}
               </p>
             </div>
-          ))}
+          </div>
+
+          {/* Second Room - Garden Room */}
+          <div className="room-card group lg:mt-20">
+            <div className="overflow-hidden mb-6 image-hover">
+              <img
+                src={rooms[1].image}
+                alt={rooms[1].name}
+                className="w-full h-64 lg:h-72 object-cover"
+              />
+            </div>
+            <div className="caption text-wasabi font-medium mb-2">{rooms[1].size}</div>
+            <h3 className="heading-3 text-sumi mb-3">{rooms[1].name}</h3>
+            <p className="body text-text-secondary text-pretty">
+              {rooms[1].description}
+            </p>
+          </div>
+
+          {/* Third Room - Studio */}
+          <div className="room-card group">
+            <div className="overflow-hidden mb-6 image-hover">
+              <img
+                src={rooms[2].image}
+                alt={rooms[2].name}
+                className="w-full h-64 lg:h-72 object-cover"
+              />
+            </div>
+            <div className="caption text-wasabi font-medium mb-2">{rooms[2].size}</div>
+            <h3 className="heading-3 text-sumi mb-3">{rooms[2].name}</h3>
+            <p className="body text-text-secondary text-pretty">
+              {rooms[2].description}
+            </p>
+          </div>
+
+          {/* Full-width closing note */}
+          <div className="lg:col-span-3 mt-12 pt-12 border-t border-border">
+            <p className="body text-text-secondary text-center text-pretty">
+              Each room is unique. Advance reservation recommended.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -432,13 +482,13 @@ function Architecture() {
       const track = sectionRef.current?.querySelector('.architecture-track');
       if (track) {
         gsap.to(track, {
-          xPercent: -100 * (images.length - 1) / images.length,
+          xPercent: -100 * (images.length - 1),
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
             pin: true,
             scrub: 1,
-            end: "+=1500",
+            end: "+=2400",
             invalidateOnRefresh: true,
           },
         });
@@ -450,7 +500,7 @@ function Architecture() {
 
   return (
     <section ref={sectionRef} id="architecture" className="overflow-hidden">
-      <div className="py-24 px-6 lg:px-8 bg-shiro">
+      <div className="py-12 lg:py-20 px-6 lg:px-8 bg-shiro">
         <h2 className="heading-2 text-sumi architecture-heading">
           Architectural Experience
         </h2>
@@ -460,7 +510,7 @@ function Architecture() {
         </p>
       </div>
 
-      <div className="architecture-wrapper relative w-full h-screen overflow-hidden">
+      <div className="architecture-wrapper relative w-full h-[70vh] lg:h-[80vh] overflow-hidden">
         <div className="architecture-track flex h-full" style={{ width: `${images.length * 100}%` }}>
           {images.map((image, i) => (
             <div
@@ -472,7 +522,7 @@ function Architecture() {
                 alt={image.alt}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute bottom-0 left-0 right-0 p-12 bg-gradient-to-t from-sumi/80 to-transparent">
+              <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12 bg-gradient-to-t from-sumi/80 to-transparent">
                 <p className="text-shiro body-large">{image.caption}</p>
               </div>
             </div>
@@ -514,7 +564,7 @@ function TaglineReveal() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 px-6 lg:px-8 bg-shiro text-center">
+    <section ref={sectionRef} className="py-12 lg:py-20 px-6 lg:px-8 bg-shiro text-center">
       <div className="max-w-4xl mx-auto">
         <h2 className="heading-2">
           <span className="tagline-word">Design</span>{" "}
@@ -599,12 +649,12 @@ function Kyoto() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="kyoto" className="py-24 px-6 lg:px-8 bg-surface">
+    <section ref={sectionRef} id="kyoto" className="py-12 lg:py-20 px-6 lg:px-8 bg-surface">
       <div className="max-w-7xl mx-auto">
         <h2 className="heading-2 text-sumi mb-6 kyoto-heading">
           Kyoto Experiences
         </h2>
-        <p className="body text-text-secondary max-w-2xl mb-16 text-pretty">
+        <p className="body text-text-secondary max-w-2xl mb-10 text-pretty">
           Beyond our walls lies one of the world's great cultural capitals. We
           curate access to the city's most meaningful experiences.
         </p>
@@ -676,7 +726,7 @@ function BookingCTA() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="book" className="py-24 px-6 lg:px-8 bg-sumi text-center">
+    <section ref={sectionRef} id="book" className="py-12 lg:py-20 px-6 lg:px-8 bg-sumi text-center">
       <div className="max-w-3xl mx-auto">
         <h2 className="heading-2 text-shiro mb-8 booking-heading text-balance">
           Begin Your Stay
@@ -748,7 +798,7 @@ function Footer() {
   return (
     <footer ref={footerRef} className="bg-shiro py-20 px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-12 mb-16">
+        <div className="grid md:grid-cols-4 gap-12 mb-10">
           <div className="md:col-span-1">
             <h3 className="heading-3 text-sumi mb-6 footer-logo">
               MAISON SORA
